@@ -10,7 +10,7 @@ app.use(express.json());
 const posts = require("./routes/api/post");
 app.use("/api/posts", posts);
 // handle Production
-if (process.env.MODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
   // Static folder
   app.use(express.static(__dirname + "/public/"));
   //handle SPA
