@@ -9,6 +9,13 @@ app.use(express.json());
 // use Route
 const posts = require("./routes/api/post");
 app.use("/api/posts", posts);
+// handle Production
+if (process.env.MODE_ENV === "production") {
+  // Static folder
+  app.use(express.static(__dirname + "/public/"));
+  //handle SPA
+  app.get(/.*/, (req, res) => res.sendFile(__dirname + "/punlic/index.html"));
+}
 
 const port = process.env.PORT || 5000;
 
